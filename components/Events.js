@@ -3,39 +3,39 @@ import { useState } from 'react';
 
 const events = [
   {
-    date: 'Feb 14 — Mar 4',
+    date: 'Feb — Mar',
     name: 'Carnevale di Venezia',
     tag: 'Festival',
-    image: 'https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=800&q=80',
-    description: 'The world-famous carnival transforms Venice into a living theater of elaborate masks, stunning costumes, and centuries-old traditions. Grand balls, street performances, and the iconic Flight of the Angel over Piazza San Marco.',
+    image: 'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=600&q=80',
+    description: 'The world-famous Venice Carnival fills the city with elaborate masks, stunning costumes, and grand masquerade balls for two magical weeks.',
   },
   {
-    date: 'Apr 19 — Nov 23',
-    name: 'La Biennale di Venezia',
+    date: 'Jun — Nov',
+    name: 'Biennale Arte',
     tag: 'Art',
-    image: 'https://images.unsplash.com/photo-1566132007999-2dde82ef7581?w=800&q=80',
-    description: 'The oldest and most prestigious international art exhibition in the world. National pavilions and the central exhibition at the Arsenale and Giardini showcase cutting-edge contemporary art from across the globe.',
+    image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&q=80',
+    description: 'The oldest and most prestigious international art exhibition in the world. Pavilions across the Giardini and Arsenale showcase groundbreaking contemporary art.',
   },
   {
-    date: 'Jul 14',
-    name: 'Festa del Redentore',
-    tag: 'Tradition',
-    image: 'https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=800&q=80',
-    description: 'Venice\'s most beloved local celebration. A spectacular fireworks display lights up the lagoon while thousands gather on decorated boats. A pontoon bridge connects the city to the Redentore church on Giudecca island.',
-  },
-  {
-    date: 'Sep 1',
-    name: 'Regata Storica',
-    tag: 'Heritage',
-    image: 'https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?w=800&q=80',
-    description: 'A grand historical procession of 16th-century boats opens the day, followed by fiercely competitive gondola races along the Grand Canal. Venetians line the banks cheering for their favorite crews in colorful livery.',
-  },
-  {
-    date: 'Aug 27 — Sep 6',
+    date: 'Sep',
     name: 'Venice Film Festival',
     tag: 'Cinema',
-    image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&q=80',
-    description: 'The world\'s oldest film festival held annually on the glamorous Lido island. International stars walk the red carpet at the Palazzo del Cinema, premiering award-contending films under the Golden Lion.',
+    image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&q=80',
+    description: 'The oldest film festival in the world, held on the glamorous Lido island. Where cinema legends walk the red carpet every September.',
+  },
+  {
+    date: 'Jul',
+    name: 'Festa del Redentore',
+    tag: 'Tradition',
+    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80',
+    description: 'A spectacular fireworks display over the lagoon celebrates the end of the 1576 plague. Venetians gather on decorated boats for a night of feasting.',
+  },
+  {
+    date: 'Sep',
+    name: 'Regata Storica',
+    tag: 'Sport',
+    image: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=80',
+    description: 'A colorful historical boat procession along the Grand Canal followed by thrilling gondola and rowing races. Pure Venetian tradition since 1489.',
   },
 ];
 
@@ -44,15 +44,14 @@ export default function Events() {
 
   return (
     <section className="events" id="events">
-      <p className="section-label">03 — Events</p>
-      <h2 className="section-title">What&apos;s happening in Venice.</h2>
+      <p className="section-label">What&apos;s on</p>
+      <h2 className="section-title">Events &amp; Festivals</h2>
       <div className="event-list">
         {events.map((event, i) => (
           <div
-            className={`event-item ${active === i ? 'event-active' : ''}`}
             key={event.name}
-            onMouseEnter={() => setActive(i)}
-            onMouseLeave={() => setActive(null)}
+            className={`event-item ${active === i ? 'event-active' : ''}`}
+            onClick={() => setActive(active === i ? null : i)}
           >
             <div className="event-row">
               <span className="event-date">{event.date}</span>
@@ -66,7 +65,7 @@ export default function Events() {
                 </div>
                 <div className="event-expand-text">
                   <p>{event.description}</p>
-                  <a href="#" className="event-link">Learn more →</a>
+                  <a href="#" className="event-link">Learn more &rarr;</a>
                 </div>
               </div>
             </div>

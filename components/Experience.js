@@ -2,12 +2,13 @@
 import { useEffect, useRef, useState } from 'react';
 
 const stats = [
-  { num: 118, label: 'Islands' },
+  { num: 118, label: 'Islands', suffix: '' },
   { num: 400, label: 'Bridges', suffix: '+' },
-  { num: 1600, label: 'Years of History' },
+  { num: 1600, label: 'Years of History', suffix: '' },
+  { num: 150, label: 'Canals', suffix: '+' },
 ];
 
-function AnimatedNumber({ target, suffix = '' }) {
+function AnimatedNumber({ target, suffix }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const started = useRef(false);
@@ -38,44 +39,41 @@ function AnimatedNumber({ target, suffix = '' }) {
     return () => observer.disconnect();
   }, [target]);
 
-  return (
-    <span ref={ref} className="stat-num">
-      {count}{suffix}
-    </span>
-  );
+  return <span ref={ref}>{count}{suffix}</span>;
 }
 
 export default function Experience() {
   return (
-    <section className="experience" id="experience">
-      <div className="exp-image">
+    <section className="exp" id="experience">
+      <div className="exp-banner">
         <img
-          src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=900&q=80"
-          alt="Venetian gondola at sunset"
+          src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=1600&q=80"
+          alt="Venice panorama"
         />
-        <div className="exp-image-accent" />
+        <div className="exp-banner-overlay" />
+        <div className="exp-banner-text">
+          <p className="section-label exp-label">Why Venice</p>
+          <h2 className="exp-heading">A city like no other on earth</h2>
+        </div>
       </div>
 
-      <div className="exp-text">
-        <p className="section-label">02 — Experience</p>
-        <h2 className="section-title">A city like no other on earth.</h2>
-        <p className="exp-body">
-          Venice is not merely visited — it is felt. Every narrow calle reveals a
-          hidden courtyard, every bridge frames a new perspective, and every ripple
-          on the lagoon carries the echo of a thousand years.
-        </p>
-        <p className="exp-body">
-          From the gilded mosaics of Basilica di San Marco to the quiet intimacy
-          of a bacaro at dusk, Venice invites you to slow down and immerse yourself.
-        </p>
+      <div className="exp-stats-row">
+        {stats.map((stat) => (
+          <div className="exp-stat-card" key={stat.label}>
+            <span className="exp-stat-num">
+              <AnimatedNumber target={stat.num} suffix={stat.suffix} />
+            </span>
+            <span className="exp-stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
 
-        <div className="exp-stats">
-          {stats.map((stat) => (
-            <div key={stat.label} className="exp-stat">
-              <AnimatedNumber target={stat.num} suffix={stat.suffix || ''} />
-              <div className="stat-label">{stat.label}</div>
-            </div>
-          ))}
+      <div className="exp-content">
+        <div className="exp-col">
+          <p>Venice is not merely visited — it is felt. Every narrow calle reveals a hidden courtyard, every bridge frames a new perspective, and every ripple on the lagoon carries the echo of a thousand years.</p>
+        </div>
+        <div className="exp-col">
+          <p>From the gilded mosaics of Basilica di San Marco to the quiet intimacy of a bacaro at dusk, Venice invites you to slow down, get lost, and discover a world that exists nowhere else.</p>
         </div>
       </div>
     </section>
